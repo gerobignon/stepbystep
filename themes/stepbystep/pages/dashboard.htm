@@ -1,0 +1,129 @@
+url = "/dashboard"
+layout = "default"
+title = "Dashboard"
+
+[session]
+security = "user"
+redirect = "login"
+==
+
+<div class="row g-5 g-lg-8">
+    <div class="col-lg-4">
+        <div class="card mb-lg-3">
+            <div class="card-header border-0 pt-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label fw-bolder fs-3 mb-1">Your latest transactions</span>
+                </h3>
+            </div>
+            
+            <div class="card-body d-flex flex-column pt-2">
+                {#<div class="bg-light rounded py-10">
+                    <div class="mixed-widget-5-chart card-rounded-top" data-kt-chart-color="success" style="height: 150px"></div>
+                </div>#}
+
+                <div>
+                    {% set i=1 %}
+                    {% for item in site.userlast|sortbyfield('created_at', 'desc') %}
+                        {% if i <= 12 %}
+                            <div class="d-flex flex-stack mb-5">
+                                <div class="d-flex align-items-center me-2">
+                                    <div class="symbol symbol-40px me-3">
+                                        <div class="symbol-label bg-{% if item.via is defined %}info{% else %}warning{% endif %}">
+                                            <img src="assets/img/{% if item.via is defined %}{{ item.via }}{% else %}{{ item.currency|lower }}{% endif %}.png" class="h-75" alt="">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a href="{% if item.via is defined %}{{ 'deposits'|page(false) }}{% else %}{{ 'buy'|page(false) }}{% endif %}" class="fs-6 text-gray-800 text-hover-{% if item.via is defined %}info{% else %}warning{% endif %} fw-bolder">
+                                            {% if item.via is defined %}{{ item.via|capitalize  }} deposit{% else %}Buy {{ item.currency|upper }}{% endif %}
+                                            <span class="badge badge-light-{% if item.status == "success" %}success"><i class="text-success bi bi-check-circle-fill"></i>
+                                                {% elseif item.status == "waiting" %}warning"><i class="text-warning bi bi-hourglass-split"></i>
+                                                {% elseif item.status == "creating" %}primary"><i class="text-primary bi bi-three-dots"></i>
+                                                {% else %}danger"><i class="text-danger bi bi-x-circle-fill"></i>
+                                                {% endif %}
+                                            </span>
+                                        </a>
+                                        <div class="fs-7 text-muted fw-bold mt-1">{{ item.created_at|localizeddate("medium","medium") }}</div>
+                                    </div>
+                                </div>
+                                <div class="badge badge-light-{% if item.via is defined %}info{% else %}warning{% endif %} fw-bold py-4 px-3">
+                                    <i class="bi bi-arrow-down-left-square-fill me-3 text-{% if item.via is defined %}info{% else %}warning{% endif %}"></i>
+                                    {{ item.amount }} XOF
+                                </div>
+                            </div>
+                            {% set i=i+1 %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-8">
+        <div class="row gx-5 gx-lg-8 mb-5 mb-lg-8">
+            <div class="d-none d-lg-flex col-lg-3">
+                <div class="card w-100 bgi-no-repeat bgi-size-cover card-lg-stretch" style="background-image:url(assets/media/stock/600x400/img-75.jpg)">
+                    <div class="card-body p-6">
+                        <a href="{{ 'contact'|page(false) }}" class="text-black text-hover-primary fw-bolder fs-2">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-9">
+                <div class="card card-lg-stretch">
+                    <div class="card-body d-flex align-items-center bg-danger rounded-3 justify-content-between flex-wrap">
+                        <div class="me-2">
+                            <h2 class="fw-bolder text-warning mb-3">Important ⚠️</h2>
+                            <div class="text-white fw-bold fs-6">{{ site.state.text }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row gx-5 gx-lg-8 mb-5 mb-lg-8">
+            <div class="col-lg-6">
+                <div class="row gx-5 gx-lg-8 mb-5 mb-lg-8">
+                    <div class="col-6">
+                        <a href="#" class="card card-xxl-stretch bg-info">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <i class="bi bi-arrow-down-left-square-fill fs-2x text-white"></i>
+                                <div class="d-flex flex-column">
+                                    <div class="text-white fw-bold fs-6 mt-3">All deposits</div>
+                                    <div class="text-white fw-bolder fs-1 mb-0 mt-5 lh-1">{{ deposit.totalUser }} <br><span class="fs-8 mt-0">XOF</span></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="col-6">
+                        <a href="#" class="card card-xxl-stretch bg-warning">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <i class="bi bi-arrow-up-right-square-fill fs-2x text-dark"></i>
+                                <div class="d-flex flex-column">
+                                    <div class="text-dark fw-bold fs-6 mt-3">All purchases</div>
+                                    <div class="text-dark fw-bolder fs-1 mb-0 mt-5 lh-1">{{ crypto.totalUser }} <br><span class="fs-8 mt-0">XOF</span></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card mb-5 mb-lg-0" id="depositscard" style="background-color: var(--bs-dark); background-position: right bottom; background-repeat:no-repeat; background-image:url(assets/media/svg/misc/taieri.svg)">
+                    <div class="card-body d-flex flex-column justify-content-between py-12">
+                        {% partial "widgets/deposit.htm" %}
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="col-lg-6">
+                {% partial "widgets/buy" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% put scripts %}
+    <script src="assets/js/custom/deposits.js"></script>
+{% endput %}

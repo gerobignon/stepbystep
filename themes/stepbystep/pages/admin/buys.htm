@@ -1,0 +1,180 @@
+title = "History of purchases"
+layout = "default"
+url = "/admin/buys"
+
+[session]
+security = "user"
+redirect = "login"
+
+==
+<div class="row mb-5 mb-lg-10">
+
+    <div class="col-md-9">
+
+        <div class="row">
+
+            <div class="col-md-3 align-items-center">
+                <div class="card card-flush h-lg-100 bg-light-primary shadow">
+                    <div class="card-header pt-5">
+                        <h3 class="w-100">
+                            <div class="mt-1 fw-bold fs-7 text-center">Successful purchases</div>
+                            <div class="card-label text-center fw-bolder fs-1 text-primary">USDT.TRC20</div>
+                        </h3>
+                    </div>
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/usdt.trc20.png" class="h-100px mb-5" alt="" />
+                        <div class="text-center">
+                            <span class="badge badge-primary fw-bolder fs-1">{{ crypto.totalUsdt }} XOF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 align-items-center">
+                <div class="card card-flush h-lg-100 bg-light-info shadow">
+                    <div class="card-header pt-5">
+                        <h3 class="w-100">
+                            <div class="mt-1 fw-bold fs-7 text-muted text-center">Successful purchases</div>
+                            <div class="card-label text-center fw-bolder fs-1 text-muted">BUSD</div>
+                        </h3>
+                    </div>
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/busd.png" class="h-100px mb-5 opacity-50" alt="" />
+                        <div class="text-center">
+                            <span class="badge badge-light fw-bolder fs-5">Coming soon...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 align-items-center">
+                <div class="card card-flush h-lg-100 bg-light-info shadow">
+                    <div class="card-header pt-5">
+                        <h3 class="w-100">
+                            <div class="mt-1 fw-bold fs-7 text-center text-muted">Successful purchases</div>
+                            <div class="card-label text-center fw-bolder fs-1 text-muted">TRON</div>
+                        </h3>
+                    </div>
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/tron.png" class="h-100px mb-5 opacity-50" alt="" />
+                        <div class="text-center">
+                            <span class="badge badge-light fw-bolder fs-5">Coming soon...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 align-items-center">
+                <div class="card card-flush h-lg-100 bg-light-success shadow">
+                    <div class="card-header pt-5">
+                        <h3 class="w-100">
+                            <div class="mt-1 fw-bold fs-7 text-center text-muted" style="color:">Successful purchases</div>
+                            <div class="card-label text-center fw-bolder fs-1 text-muted">BTC</div>
+                        </h3>
+                    </div>
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/bitcoin.png" class="h-100px mb-5 opacity-50" alt="" />
+                        <div class="text-center">
+                            <span class="badge badge-light fw-bolder fs-5">Coming soon...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card card-flush h-lg-100 bg-warning shadow">
+            <div class="card-header pt-5">
+                <h3 class="w-100">
+					<div class="mt-1 fw-bold fs-7 text-center text-dark">Successful purchases with</div>
+                    <div class="card-label text-center fw-bolder fs-1 text-black">All Processors</div>
+                </h3>
+            </div>
+            <div class="align-items-center card-body d-flex flex-column pt-0 text-center">
+                <img src="assets/img/usdt.trc20.png" class="h-100px mb-5" alt="" />
+                {#<div class="symbol-group mx-auto">
+                    <div class="symbol symbol-circle symbol-100px">
+                        <img src="assets/img/fedapay.png" alt=""/>
+                    </div>
+
+                    <div class="symbol symbol-circle symbol-100px">
+                        <img src="assets/img/paydunya.png" alt=""/>
+                    </div>
+                </div>
+                <div class="symbol symbol-circle symbol-100px mt-n15 border border-2">
+                    <img src="assets/img/cinetpay.png" alt=""/>
+                </div>#}
+                <div class="text-center mt-5">
+                    <span class="badge badge-light-warning fw-bolder fs-1">{{ crypto.total }} XOF</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-px text-center py-10">
+            {#<div class="d-flex justify-content-end mb-5">
+                
+                <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
+                    <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                        <span class="svg-icon svg-icon-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="currentColor" />
+                            </svg>
+                        </span>
+                        Filter
+                    </button>
+                    <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">
+                        <div class="px-7 py-5">
+                            <div class="fs-5 text-dark fw-bolder">Filter Options</div>
+                        </div>
+                        <div class="separator border-gray-200"></div>
+                        <div class="px-7 py-5">
+                            {{ form_ajax("validator::onFilter", { update: {'lists/validation':'#partialValidation'} }) }}
+                                <div class="mb-10 text-start">
+                                    <label class="form-label fs-6 fw-bold">Status:</label>
+                                    <select name="status" class="form-select form-select-solid fw-bolder" data-kt-select2="true" data-placeholder="Select option" data-hide-search="true">
+                                        <option value=""></option>
+                                        <option value="1">Validated</option>
+                                        <option value="2">Pending</option>
+                                    </select>
+                                </div>
+                                <div class="mb-10 text-start">
+                                    <label class="form-label fs-6 fw-bold">Order by date:</label>
+                                    <select name="order" class="form-select form-select-solid fw-bolder" data-kt-select2="true" data-placeholder="Select option" data-hide-search="true">
+                                        <option value=""></option>
+                                        <option value="asc">Ascendant</option>
+                                        <option value="desc">Descendant</option>
+                                    </select>
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="reset" class="btn btn-light btn-active-light-primary fw-bold me-2 px-6" data-kt-menu-dismiss="true">Reset</button>
+                                    <button type="submit" class="btn btn-primary fw-bold px-6" data-kt-menu-dismiss="true">Apply</button>
+                                </div>
+                            {{ form_close() }}
+                        </div>
+                    </div>
+                </div>
+                
+            </div> #}
+
+            {% partial 'lists/buy' source=crypto.list %}
+            
+        </div>
+    </div>
+</div>
+
+{% put bouton %}
+    <a href data-bs-toggle="modal" data-bs-target="#changerate" class="btn btn-primary fs-3 mx-2">Edit rates <i class="bi bi-currency-exchange text-white fs-1 mt-n1 ms-2"></i></a>
+{% endput %}
+
+{% put scripts %}
+    <script src="assets/js/custom/rates.js"></script>
+{% endput %}

@@ -1,0 +1,63 @@
+title = "KYC validations"
+layout = "default"
+url = "/admin/validation/:status?/:order?"
+
+[session]
+security = "user"
+redirect = "login"
+
+[validator]
+[account]
+
+==
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-px text-center pt-15 pb-15">
+            <div id="partialValidation">
+                {% partial 'lists/validation' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% put bouton %}
+	<div class="menu menu-column menu-gray-600 menu-active-primary menu-hover-light-primary menu-here-light-primary menu-show-light-primary fw-semibold w-175px" data-kt-menu="true">
+		<div class="menu-item here" data-kt-menu-trigger="hover" data-kt-menu-placement="right-start">
+			<a href="#" class="menu-link btn btn-primary fs-3 mx-2">
+				<span class="menu-icon">
+					<i class="bi bi-bar-chart fs-3 text-white"></i>
+				</span>
+				<span class="menu-title text-white">Filter :</span>
+				<span class="menu-arrow text-white"></span>
+			</a>
+			
+			<div class="menu-sub menu-sub-dropdown w-175px py-2">
+				<div class="menu-item">
+					<a href="{{ 'admin/validation'|page({status: 'validated', order: 'asc'}) }}" class="menu-link">
+						<span class="menu-title">Validated (Asc)</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a href="{{ 'admin/validation'|page({status: 'validated', order: 'desc'}) }}" class="menu-link">
+						<span class="menu-title">Validated (Desc)</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a href="{{ 'admin/validation'|page({status: 'pending', order: 'asc'}) }}" class="menu-link">
+						<span class="menu-title">Pending (Asc)</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a href="{{ 'admin/validation'|page({status: 'pending', order: 'desc'}) }}" class="menu-link">
+						<span class="menu-title">Pending (Desc)</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endput %}
+
+{% put scripts %}
+    <script src="assets/plugins/custom/fslightbox/fslightbox.bundle.js"></script>
+{% endput %}

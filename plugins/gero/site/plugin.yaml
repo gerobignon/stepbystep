@@ -1,0 +1,32 @@
+plugin:
+    name: 'gero.site::lang.plugin.name'
+    description: 'gero.site::lang.plugin.description'
+    author: Gero
+    icon: oc-icon-globe
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Option
+        url: gero/site/option
+        icon: icon-globe
+        sideMenu:
+            side-menu-item:
+                label: Validation
+                url: gero/site/validations
+                icon: icon-check-circle
+            side-menu-item2:
+                label: Option
+                url: gero/site/option
+                icon: icon-globe
+            side-menu-item3:
+                label: Wallets
+                url: gero/site/wallet
+                icon: icon-link
+            side-menu-item4:
+                label: Rates
+                url: gero/site/rate
+                icon: icon-calculator
+            side-menu-item5:
+                label: Logs
+                url: gero/site/log
+                icon: icon-file-text-o

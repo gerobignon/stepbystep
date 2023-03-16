@@ -1,0 +1,24 @@
+columns:
+    id:
+        label: id
+        type: number
+    user:
+        label: user
+        type: number
+        select: email
+        relation: user
+    name:
+        label: name
+        type: text
+    currency:
+        label: currency
+        type: text
+    wallet:
+        label: wallet
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

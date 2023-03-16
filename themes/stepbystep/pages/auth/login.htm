@@ -1,0 +1,55 @@
+url = "/login"
+layout = "other"
+title = "Sign in"
+
+[account]
+redirect = "dashboard"
+paramCode = "code"
+activationPage = "activation"
+requirePassword = 0
+
+==
+
+{{ form_open({class:"form w-100", id:"login_form"}) }}
+
+    <div class="text-center mb-10">
+        <h1 class="text-dark mb-3">Sign In</h1>
+        <div class="text-gray-400 fw-bold fs-4">New Here?
+        <a href="{{ 'auth/register'|page(false) }}" class="link-danger fw-bolder">Create an Account</a></div>
+    </div>
+    
+    <div class="fv-row mb-10">
+        <label for="userSigninLogin" class="form-label fs-6 fw-bolder text-dark">Email</label>
+        <input class="form-control form-control-lg form-control-solid" type="text" name="login" id="userSigninLogin" autocomplete="off">
+    </div>
+    
+    <div class="fv-row mb-10">
+        <div class="d-flex flex-stack mb-2">
+            <label for="userSigninPassword" class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
+            <a href="{{ 'auth/reset'|page(false) }}" class="link-danger fs-6 fw-bolder">Forgot Password ?</a>
+        </div>
+        
+        <input class="form-control form-control-lg form-control-solid" type="password" name="password" id="userSigninPassword" autocomplete="off">
+    </div>
+
+    {% if rememberLoginMode == 'ask' %}
+        <div class="form-check form-check-custom form-check-solid">
+            <input class="form-check-input" name="remember" value="1" type="checkbox" id="userCheck">
+            <label class="form-check-label" for="userCheck">Stay logged in</label>
+        </div>
+    {% endif %}
+    
+    <div class="text-center">
+        <button type="submit" id="login_submit" class="btn btn-lg btn-info mb-5">
+            <span class="indicator-label">Continue</span>
+            <span class="indicator-progress">Please wait...
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+        </button>
+    </div>
+{{ form_close() }}
+    
+
+
+{% put scripts %}
+    <script src="assets/js/custom/login.js"></script>
+{% endput %}

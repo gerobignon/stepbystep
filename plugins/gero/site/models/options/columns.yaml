@@ -1,0 +1,16 @@
+columns:
+    id:
+        label: id
+        type: number
+    fedapay:
+        label: fedapay
+        type: number
+    paydunya:
+        label: paydunya
+        type: number
+    cinetpay:
+        label: cinetpay
+        type: number
+    usdt:
+        label: usdt
+        type: number

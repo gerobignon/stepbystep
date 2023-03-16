@@ -1,0 +1,33 @@
+columns:
+    id:
+        label: id
+        type: number
+    user:
+        label: user
+        type: text
+        select: email
+        relation: user
+    amount:
+        label: amount
+        type: text
+    ref:
+        label: ref
+        type: text
+    address:
+        label: address
+        type: text
+    currency:
+        label: currency
+        type: text
+    status:
+        label: status
+        type: text
+    hash:
+        label: hash
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

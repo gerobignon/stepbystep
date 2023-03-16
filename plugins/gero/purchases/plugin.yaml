@@ -1,0 +1,16 @@
+plugin:
+    name: 'gero.purchases::lang.plugin.name'
+    description: 'gero.purchases::lang.plugin.description'
+    author: Gero
+    icon: oc-icon-arrow-circle-up
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Purchases
+        url: gero/purchases/crypto
+        icon: icon-arrow-circle-up
+        sideMenu:
+            side-menu-item:
+                label: Cryptos
+                url: gero/purchases/crypto
+                icon: icon-bitcoin

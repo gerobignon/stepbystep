@@ -1,0 +1,72 @@
+title = "Make a deposit"
+layout = "other"
+url = "/pay_with_fedapay"
+
+[session]
+security = "user"
+redirect = "login"
+
+[deposit]
+
+==
+{% if this.session.get("amount") %}
+    <div class="d-flex flex-colunm justify-content-center w-100">
+        <div class="text-center">
+            <h1 class="fs-1 mb-5">Confirm your payment !</h1>
+            <img src="{{ 'assets/img/fedapay.png'|theme }}" class="w-50 my-15">
+            <br>
+            <p class="fs-5 fw-bold">You are making a payment of <span class="badge badge-info rounded-pill fs-2 fw-boldest">{{ this.session.get("amount") }} XOF</span></p>
+            {# <p class="fs-2 fw-bold text-danger">You will be debited {{ amount + (amount*0.0373) }} XOF.</p> #}
+            <button id="pay-btn" class="btn btn-lg btn-danger rounded-pill fs-1 mt-15"><i class="bi bi-check-circle-fill fs-2hx me-4"></i> Pay now</button>
+            <br>
+            <a class="btn btn-sm btn-outline-light border rounded-pill text-dark mt-5" data-request="deposit::onCancel"><i class="bi bi-arrow-left-short me-4"></i> I'm finish</a>
+        </div>
+    </div>
+
+    <script src="//cdn.fedapay.com/checkout.js?v=1.1.7"></script>
+    <script type="text/javascript">
+
+        FedaPay.init('#pay-btn',{
+            public_key: 'pk_live_3pmcd0Gosxqhu2G9n3I9ivRz',
+            //public_key: 'pk_sandbox_5O4o_w7e5SSxG4DnxtVzy32r',
+            transaction: {
+                amount: '{{ this.session.get("amount") }}',
+                description: '{{ this.session.get("ref") }}'
+            },
+            locale: 'en',
+            customer: {
+                email: '{{user.email}}',
+                lastname: '{{user.name}}',
+                firstname: '{{user.surname}}',
+                phone_number: {
+                    number: '{{user.phone}}',
+                    country: '{{user.country}}'
+                }
+            },
+            onComplete(resp) {
+                console.log(resp);
+                const FedaPay = window['FedaPay'];
+                if (resp.reason === FedaPay.DIALOG_DISMISSED) {
+                    swal('You have closed the dialog box.');
+                } else {
+                    $.request('deposit::onComplete', {
+                        data: {
+                            reference:resp.transaction.id,
+                            status:resp.transaction.status
+                        },
+                        success: function() {
+                            window.addEventListener("beforeunload", ev => {
+                                return true;
+                            });
+
+                            location.href = "/deposits";
+                        }
+                    });
+                }
+            }
+        });
+
+    </script>
+{% else %}
+    {% partial "access" %}
+{% endif %}

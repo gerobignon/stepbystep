@@ -1,0 +1,4 @@
+title: Validations
+modelClass: Gero\Site\Models\Validation
+toolbar:
+    buttons: reorder_toolbar

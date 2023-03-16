@@ -1,0 +1,37 @@
+url = "/temp"
+title = "Test"
+
+==
+<?php
+
+	use Gero\Deposits\Models\Deposits;
+	use Gero\Purchases\Models\Cryptos;
+	use Rainlab\User\Models\User;
+
+	function onStart(){
+
+
+
+
+
+		// code 1 : comparaison des soldes
+		$one = User::select("id")->get();
+		$data = "<ul>";
+		foreach ($one as $item) {
+			
+			// somme des dépots
+			$depos = Deposits::where("user_id", $item->id)->where("status", "success")->sum("amount");
+			$cryptos = Cryptos::where("user_id", $item->id)->where("status", "success")->sum("amount");
+
+			$somme = $depos-$cryptos;
+
+			if($somme< 0) $data .= "<li> User : ".$item->id." <strong>Wallet : ".$somme."</strong></li>";
+
+		}
+
+		$this["data"] = $data."</ul>";
+
+	}
+==
+
+{{ data|raw }}

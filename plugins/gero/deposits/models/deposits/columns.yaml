@@ -1,0 +1,34 @@
+columns:
+    id:
+        label: id
+        type: number
+        searchable: true
+    user_id:
+        label: user_id
+        type: number
+        searchable: true
+    amount:
+        label: amount
+        type: text
+        searchable: false
+    ref:
+        label: ref
+        type: text
+        searchable: true
+    via:
+        label: via
+        type: text
+        searchable: true
+    status:
+        label: status
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    real:
+        label: real
+        type: text
+        searchable: true

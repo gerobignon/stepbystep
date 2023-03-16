@@ -1,0 +1,78 @@
+title = "Make a deposit"
+layout = "other"
+url = "/pay_with_paydunya"
+
+[session]
+security = "user"
+redirect = "login"
+
+[deposit]
+
+==
+
+{% if this.session.get("amount") %}
+
+    <link rel="stylesheet" type="text/css" href="https://paydunya.com/assets/psr/css/psr.paydunya.min.css">
+
+    <div class="d-flex flex-colunm justify-content-center w-100">
+        <div class="text-center">
+            <h1 class="fs-1 mb-5">Confirm your payment !</h1>
+            <img src="{{ 'assets/img/paydunya.png'|theme }}" class="w-50 my-15">
+            <br>
+            <p class="fs-5 fw-bold">You are making a payment of <span class="badge badge-info rounded-pill fs-2 fw-boldest px-5">{{ this.session.get("amount") }} XOF</span></p>
+            {# <p class="fs-2 fw-bold text-danger">You will be debited {{ amount + (amount*0.0373) }} XOF.</p> #}
+            <button onclick="payWithPaydunya(this)" data-fullname="{{ user.surname }} {{ user.name }}" data-email="{{ user.email }}" class="btn btn-lg btn-danger rounded-pill fs-1 mt-15"><i class="bi bi-check-circle-fill fs-2hx me-4"></i> Pay now</button>
+            <br>
+            <a class="btn btn-sm btn-outline-light border rounded-pill text-dark mt-5" data-request="deposit::onCancel"><i class="bi bi-arrow-left-short me-4"></i> I'm finish</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://paydunya.com/assets/psr/js/psr.paydunya.min.js"></script>
+
+    <script>
+
+        function payWithPaydunya(btn) {
+
+            PayDunya.setup({
+                selector: $(btn),
+                url: "https://step-by-step.exchange/generate_token_paydunya",
+                method: "GET",
+                displayMode: PayDunya.DISPLAY_IN_POPUP,
+                onTerminate: function(ref, token, status) {
+                    //console.log("Terminate");
+                    $.request('site::onLogs', {data: { log:"Terminate"}});
+                    window.location.replace("/deposits");
+                },
+                onError: function (error) {
+                    //console.log(error);
+                    $.request('site::onLogs', {data: { log:error}});
+                    //alert("Unknown Error ==> ", error.toString());
+                    window.location.replace("/deposits");
+                },
+                onUnsuccessfulResponse: function (jsonResponse) {
+                    //console.log("Unsuccessful response ==> " + jsonResponse);
+                    $.request('site::onLogs', {data: { log:jsonResponse}});
+                    window.location.replace("/deposits");
+                },
+                onClose: function() {
+                    //console.log("Close");
+                    $.request('site::onLogs', {data: { log:"Close"}});
+                    $.request('deposit::onComplete', {
+                        data: {
+                            reference:token,
+                            status:"failed"
+                        },
+                        success: function() {
+                            window.location.replace("/deposits");
+                        }
+                    });
+                }
+            }).requestToken();
+        }
+
+    </script>
+
+{% else %}
+    {% partial "access" %}
+{% endif %}

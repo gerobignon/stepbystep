@@ -1,0 +1,5 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table gero_purchases_crypto'
+    - builder_table_create_gero_purchases_crypto.php

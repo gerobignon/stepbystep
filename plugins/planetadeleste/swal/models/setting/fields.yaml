@@ -1,0 +1,261 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: planetadeleste.swal::lang.settings.name
+        required: required
+        span: left
+        trigger:
+            action: show
+            field: is_global
+            condition: unchecked
+    global_title:
+        label: planetadeleste.swal::lang.settings.name
+        required: required
+        span: left
+        type: dropdown
+        trigger:
+            action: show
+            field: is_global
+            condition: checked
+    is_global:
+        label: planetadeleste.swal::lang.settings.global
+        span: right
+        type: switch
+        default: false
+        commentAbove: planetadeleste.swal::lang.settings.global_comment
+tabs:
+    fields:
+        options[theme]:
+            label: planetadeleste.swal::lang.settings.theme
+            span: left
+            type: dropdown
+            options: getThemeOptions
+            commentAbove: planetadeleste.swal::lang.doc.theme
+            tab: planetadeleste.swal::lang.settings.options
+
+        options[use_default_options]:
+            label: planetadeleste.swal::lang.settings.no_options
+            span: right
+            type: switch
+            default: false
+            tab: planetadeleste.swal::lang.settings.options
+
+        options_section:
+            label: Documentation - http://t4t5.github.io/sweetalert/
+            type: section
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+        options[allowEscapeKey]:
+            label: allowEscapeKey
+            span: left
+            type: switch
+            default: true
+            commentAbove: planetadeleste.swal::lang.doc.allowescapekey
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+        options[allowOutsideClick]:
+            label: allowOutsideClick
+            span: right
+            type: switch
+            default: false
+            commentAbove: planetadeleste.swal::lang.doc.allowoutsideclick
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[showCancelButton]:
+            label: showCancelButton
+            span: left
+            type: switch
+            default: false
+            commentAbove: planetadeleste.swal::lang.doc.showcancelbutton
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[showConfirmButton]:
+            label: showConfirmButton
+            span: right
+            type: switch
+            default: true
+            commentAbove: planetadeleste.swal::lang.doc.showconfirmbutton
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[closeOnConfirm]:
+            label: closeOnConfirm
+            span: left
+            type: switch
+            default: true
+            commentAbove: planetadeleste.swal::lang.doc.closeonconfirm
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[closeOnCancel]:
+            label: closeOnCancel
+            span: right
+            type: switch
+            default: true
+            commentAbove: planetadeleste.swal::lang.doc.closeoncancel
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[animation]:
+            label: animation
+            span: left
+            type: dropdown
+            options: getAnimationOptions
+            default: "pop"
+            commentAbove: planetadeleste.swal::lang.doc.animation
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[html]:
+            label: html
+            span: right
+            type: switch
+            default: false
+            commentAbove: planetadeleste.swal::lang.doc.html
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[customClass]:
+            label: customClass
+            span: left
+            default: null
+            commentAbove: planetadeleste.swal::lang.doc.customclass
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[confirmButtonText]:
+            label: confirmButtonText
+            span: right
+            default: "Ok"
+            commentAbove: planetadeleste.swal::lang.doc.confirmbuttontext
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[confirmButtonColor]:
+            label: confirmButtonColor
+            span: left
+            type: colorpicker
+            default: "#AEDEF4"
+            commentAbove: planetadeleste.swal::lang.doc.confirmbuttoncolor
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[cancelButtonText]:
+            label: cancelButtonText
+            span: right
+            default: "Cancel"
+            commentAbove: planetadeleste.swal::lang.doc.cancelbuttontext
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[imageUrl]:
+            label: imageUrl
+            span: left
+            default: null
+            commentAbove: planetadeleste.swal::lang.doc.imageurl
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[imageSize]:
+            label: imageSize
+            span: right
+            default: "80x80"
+            commentAbove: planetadeleste.swal::lang.doc.imagesize
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[timer]:
+            label: timer
+            span: left
+            default: null
+            commentAbove: planetadeleste.swal::lang.doc.timer
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[inputType]:
+            label: inputType
+            span: right
+            type: dropdown
+            options: getInputTypeOptions
+            default: true
+            commentAbove: planetadeleste.swal::lang.doc.inputtype
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[inputPlaceholder]:
+            label: inputPlaceholder
+            span: left
+            default: null
+            commentAbove: planetadeleste.swal::lang.doc.inputplaceholder
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked
+
+        options[inputValue]:
+            label: inputValue
+            span: right
+            default: null
+            commentAbove: planetadeleste.swal::lang.doc.inputvalue
+            tab: planetadeleste.swal::lang.settings.options
+            trigger:
+                action: hide
+                field: options[use_default_options]
+                condition: checked

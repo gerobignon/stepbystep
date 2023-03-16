@@ -1,0 +1,4 @@
+title: Log
+modelClass: Gero\Site\Models\Logs
+toolbar:
+    buttons: reorder_toolbar

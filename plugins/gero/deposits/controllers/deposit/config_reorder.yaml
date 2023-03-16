@@ -1,0 +1,4 @@
+title: Deposit
+modelClass: Gero\Deposits\Models\Deposits
+toolbar:
+    buttons: reorder_toolbar

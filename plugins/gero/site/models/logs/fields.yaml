@@ -1,0 +1,6 @@
+fields:
+    msg:
+        label: Messages
+        size: giant
+        span: full
+        type: textarea

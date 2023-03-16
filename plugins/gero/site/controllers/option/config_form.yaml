@@ -1,0 +1,10 @@
+name: Option
+form: $/gero/site/models/options/fields.yaml
+modelClass: Gero\Site\Models\Options
+defaultRedirect: gero/site/option
+create:
+    redirect: 'gero/site/option/update/:id'
+    redirectClose: gero/site/option
+update:
+    redirect: gero/site/option
+    redirectClose: gero/site/option

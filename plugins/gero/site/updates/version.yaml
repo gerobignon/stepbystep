@@ -1,0 +1,38 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table gero_site_options'
+    - builder_table_create_gero_site_options.php
+1.0.3:
+    - 'Add new field for users'
+    - migration_103.php
+1.0.4:
+    - 'Created table gero_site_validation'
+    - builder_table_create_gero_site_validation.php
+1.0.5:
+    - 'Anew type field to users'
+    - migration_105.php
+1.0.6:
+    - 'Created table gero_site_wallet'
+    - builder_table_create_gero_site_wallet.php
+1.0.7:
+    - 'Created table gero_site_rates'
+    - builder_table_create_gero_site_rates.php
+1.0.8:
+    - 'Created table gero_site_logs'
+    - builder_table_create_gero_site_logs.php
+1.0.9:
+    - 'Updated table gero_site_options'
+    - builder_table_update_gero_site_options.php
+1.0.10:
+    - 'Updated table gero_site_options'
+    - builder_table_update_gero_site_options_2.php
+1.0.11:
+    - 'Updated table gero_site_options'
+    - builder_table_update_gero_site_options_3.php
+1.0.12:
+    - 'Updated table gero_site_options'
+    - builder_table_update_gero_site_options_4.php
+1.0.13:
+    - 'Updated table gero_site_options'
+    - builder_table_update_gero_site_options_5.php

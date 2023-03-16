@@ -1,0 +1,47 @@
+title = "Make a deposit"
+layout = "other"
+url = "/pay_with_payplus"
+
+[session]
+security = "user"
+redirect = "login"
+
+[deposit]
+
+==
+
+{% if this.session.get("amount") %}
+
+    <div class="d-flex flex-colunm justify-content-center w-100">
+        <div class="text-center">
+            <h1 class="fs-1 mb-5">Confirm your payment !</h1>
+            <img src="{{ 'assets/img/payplus.png'|theme }}" class="w-50 my-15">
+            <br>
+            <p class="fs-5 fw-bold">You are making a payment of <span class="badge badge-info rounded-pill fs-2 fw-boldest px-5">{{ this.session.get("amount") }} XOF</span></p>
+            {# <p class="fs-2 fw-bold text-danger">You will be debited {{ amount + (amount*0.0373) }} XOF.</p> #}
+            <button onclick="payWithPayplus(this)" class="btn btn-lg btn-danger rounded-pill fs-1 mt-15"><i class="bi bi-check-circle-fill fs-2hx me-4"></i> Pay now</button>
+            <br>
+            <a class="btn btn-sm btn-outline-light border rounded-pill text-dark mt-5" data-request="deposit::onCancel"><i class="bi bi-arrow-left-short me-4"></i> I'm finish</a>
+        </div>
+    </div>
+
+    <script>
+
+        function payWithPayplus(btn) {
+
+            $.request('deposit::onPayplus', {
+                data: {
+                    reference:token,
+                    status:"failed"
+                },
+                success: function() {
+                    window.location.replace("/deposits");
+                }
+            });
+        }
+
+    </script>
+
+{% else %}
+    {% partial "access" %}
+{% endif %}

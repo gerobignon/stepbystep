@@ -1,0 +1,29 @@
+1.0.1:
+  - First version of Swal
+  - create_settings_table.php
+1.0.2:
+  - Fix a problem using ajax to send Flash messages.
+1.0.3:
+  - Add english translation
+1.0.4:
+  - Fix custom options problems in javascript
+1.0.5:
+  - Update sweetalert to 1.1.3
+  - Add Confirmation message
+1.0.6:
+  - Add global styles for ajax events
+  - add_global_settings_table.php
+1.0.7:
+  - Fix problems with duplicate alerts on ajax redirect
+  - Fix problems with wrong json export
+  - Alert can be set to auto close, defining timer and setting showConfirmButton to false
+1.0.8:
+  - Add themes in config settings
+  - New switch to hide all custom options and only choose a Theme
+1.0.9:
+  - Add dropdown in animation settings
+1.1.0:
+  - Fix infinite ajax loop
+  - Rewrite the javascript library.
+  - Override $.oc.flashMsg
+  

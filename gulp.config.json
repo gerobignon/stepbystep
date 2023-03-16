@@ -1,0 +1,10 @@
+{
+  "config": {
+    "path": {
+      "src": "./themes/stepbystep/src"
+    },
+    "dist": [
+      "./themes/stepbystep/assets"
+    ]
+  }
+}

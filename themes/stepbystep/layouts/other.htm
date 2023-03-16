@@ -1,0 +1,68 @@
+[loader]
+[site]
+==
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+
+		<base href="{{ url('/') }}/themes/stepbystep/">
+		<title>{{ this.page.title}} | Step by Step</title>
+
+		<meta charset="utf-8">
+		<meta name="description" content="Step by step exchange is a platform of exchange and tranding of crypto currencies.">
+		<meta name="keywords" content="crypto, exchange, tranding, mtn, moov, visa, mastercard, usdt, tron, bitcoin, africa, nigeria, benin">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<meta property="og:locale" content="en_US">
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="{{ this.page.title}} | Step by Step">
+		<meta property="og:url" content="https://step-by-step.exchange">
+		<meta property="og:site_name" content="{{ this.page.title}} | Step by Step">
+
+		<link rel="canonical" href="https://step-by-step.exchange">
+		<link rel="shortcut icon" href="assets/img/favicon.png">
+
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css">
+
+		{% if this.session.get("amount") and this.page.id in ["pay-fedapay"] %}
+			<script>
+				window.addEventListener("beforeunload", ev => {
+					ev.returnValue = "sur ?";
+				});
+			</script>
+		{% endif %}
+		{% styles %}
+
+	</head>
+	
+	<body id="kt_body" class="bg-light">
+		
+		<div class="d-flex flex-column flex-root">
+			<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(assets/media/illustrations/sigma-1/14.png);">
+				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+					
+					<img alt="Step by step Exchange" src="assets/img/logo_long.png" class="h-100px mb-12" />
+					
+					<div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+						
+                        {% page %}
+
+					</div>
+				</div>
+                    
+			</div>
+		</div>
+		
+		<script>var hostUrl = "assets/";</script>
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		
+		{% framework extras %}
+		{% scripts %}
+
+	</body>
+	
+</html>

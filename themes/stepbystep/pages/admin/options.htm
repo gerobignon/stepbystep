@@ -1,0 +1,174 @@
+title = "Options"
+layout = "default"
+url = "/admin/options"
+
+[session]
+security = "user"
+redirect = "login"
+
+==
+<div class="row g-5 g-lg-10 mb-5 mb-lg-10">
+
+    <div class="col-lg-8">
+    <div class="card">
+    <div class="card-body">
+        <h1 class="mb-10">Aggregators management</h1>
+        <div class="row g-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="card card-flush h-lg-100 py-10 bg-light-primary shadow">
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/fedapay.png" class="h-125px mb-5" alt="">
+                        <div class="text-center">
+                            <span class="fs-1">Fedapay is</span>
+                            <br>
+                            {% if site.state.fedapay == 1 %}
+                                <span class="badge badge-primary fw-bolder fs-3">activated</span>
+                                <br>
+                                <a href data-request="site::onFedapayDisable" class="btn btn-danger mt-10">Disable</a>
+                            {% else %}
+                                <span class="badge badge-danger fw-bolder fs-3">disabled</span>
+                                <br>
+                                <a href data-request="site::onFedapayActivate" class="btn btn-primary mt-10">Activate</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card card-flush h-lg-100 py-10 bg-light-primary shadow">
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/paydunya.png" class="h-125px mb-5" alt="">
+                        <div class="text-center">
+                            <span class="fs-1">Paydunya is</span>
+                            <br>
+                            {% if site.state.paydunya == 1 %}
+                                <span class="badge badge-primary fw-bolder fs-3">activated</span>
+                                <br>
+                                <a href data-request="site::onPaydunyaDisable" class="btn btn-danger mt-10">Disable</a>
+                            {% else %}
+                                <span class="badge badge-danger fw-bolder fs-3">disabled</span>
+                                <br>
+                                <a href data-request="site::onPaydunyaActivate" class="btn btn-primary mt-10">Activate</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card card-flush h-lg-100 py-10 bg-light-primary shadow">
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/cinetpay.png" class="h-125px mb-5" alt="">
+                        <div class="text-center">
+                            <span class="fs-1">Cinetpay is</span>
+                            <br>
+                            {% if site.state.cinetpay == 1 %}
+                                <span class="badge badge-primary fw-bolder fs-3">activated</span>
+                                <br>
+                                <a href data-request="site::onCinetpayDisable" class="btn btn-danger mt-10">Disable</a>
+                            {% else %}
+                                <span class="badge badge-danger fw-bolder fs-3">disabled</span>
+                                <br>
+                                <a href data-request="site::onCinetpayActivate" class="btn btn-primary mt-10">Activate</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card card-flush h-lg-100 py-10 bg-light-primary shadow">
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/payplus.png" class="h-125px mb-5" alt="">
+                        <div class="text-center">
+                            <span class="fs-1">Payplus is</span>
+                            <br>
+                            {% if site.state.payplus == 1 %}
+                                <span class="badge badge-primary fw-bolder fs-3">activated</span>
+                                <br>
+                                <a href data-request="site::onPayplusDisable" class="btn btn-danger mt-10">Disable</a>
+                            {% else %}
+                                <span class="badge badge-danger fw-bolder fs-3">disabled</span>
+                                <br>
+                                <a href data-request="site::onPayplusActivate" class="btn btn-primary mt-10">Activate</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card card-flush h-lg-100 py-10 bg-light-primary shadow">
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/kkiapay.png" class="h-125px mb-5" alt="">
+                        <div class="text-center">
+                            <span class="fs-1">KKiaPay is</span>
+                            <br>
+                            {% if site.state.kkiapay == 1 %}
+                                <span class="badge badge-primary fw-bolder fs-3">activated</span>
+                                <br>
+                                <a href data-request="site::onKkiapayDisable" class="btn btn-danger mt-10">Disable</a>
+                            {% else %}
+                                <span class="badge badge-danger fw-bolder fs-3">disabled</span>
+                                <br>
+                                <a href data-request="site::onKkiapayActivate" class="btn btn-primary mt-10">Activate</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card card-flush h-lg-100 py-10 bg-light-primary shadow">
+                    <div class="card-body text-center pt-5">
+                        <img src="assets/img/usdt.trc20.png" class="h-125px mb-5" alt="">
+                        <div class="text-center">
+                            <span class="fs-1">USDT.TRC20 is</span>
+                            <br>
+                            {% if site.state.usdt == 1 %}
+                                <span class="badge badge-primary fw-bolder fs-3">activated</span>
+                                <br>
+                                <a href data-request="site::onUsdtDisable" class="btn btn-danger mt-10">Disable</a>
+                            {% else %}
+                                <span class="badge badge-danger fw-bolder fs-3">disabled</span>
+                                <br>
+                                <a href data-request="site::onUsdtActivate" class="btn btn-primary mt-10">Activate</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="mb-10">Homepage Warning Text</h1>
+                <div class="row g-5">
+                    {{ form_open({class:"row", id:"hometext_form"}) }}
+                        <div class="col-12">
+                            <textarea class="form-control" id="hometext" name="hometext" rows="5" placeholder="Enter your warning here..." required="">{{ site.state.text}}</textarea>
+                        </div>
+                        <div class="col-12 mt-10">
+                            <button type="submit" id="hometext_submit" class="btn btn-lg btn-info mb-5">
+                                <span class="indicator-label">Change it!</span>
+                                <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            </button>
+                        </div>
+                    {{ form_close() }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% put scripts %}
+    <script src="assets/js/custom/hometext.js"></script>
+{% endput %}

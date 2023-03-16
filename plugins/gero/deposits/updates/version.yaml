@@ -1,0 +1,8 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table gero_deposits_'
+    - builder_table_create_gero_deposits_.php
+1.0.3:
+    - 'Updated table gero_deposits_'
+    - builder_table_update_gero_deposits_.php

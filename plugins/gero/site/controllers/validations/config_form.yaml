@@ -1,0 +1,10 @@
+name: Validations
+form: $/gero/site/models/validation/fields.yaml
+modelClass: Gero\Site\Models\Validation
+defaultRedirect: gero/site/validations
+create:
+    redirect: 'gero/site/validations/update/:id'
+    redirectClose: gero/site/validations
+update:
+    redirect: gero/site/validations
+    redirectClose: gero/site/validations

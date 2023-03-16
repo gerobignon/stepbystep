@@ -1,0 +1,7 @@
+{% put scripts %}
+<script>
+    document.swalFlash = {{ options|length ? 'true' : 'false' }};
+    document.swalOptions = {{ options|default([])|json_encode|raw }};
+    document.swalGlobalOptions = {{ globalOptions|default([])|json_encode|raw }};
+</script>
+{% endput %}

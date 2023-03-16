@@ -1,0 +1,4 @@
+title: Wallet
+modelClass: Gero\Site\Models\Wallets
+toolbar:
+    buttons: reorder_toolbar

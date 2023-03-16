@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    user_id:
+        label: user_id
+        type: number
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true
+    updated_at:
+        label: updated_at
+        type: datetime
+        sortable: true
+    idcard:
+        label: idcard
+        type: partial
+        path: ~/plugins/gero/site/models/validation/_image_column.htm
+    selfie:
+        label: selfie
+        type: partial
+        path: ~/plugins/gero/site/models/validation/_image_column.htm

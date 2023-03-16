@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Setting
+
+# Model Form Field configuration
+form: $/planetadeleste/swal/models/setting/fields.yaml
+
+# Model Class name
+modelClass: PlanetaDelEste\Swal\Models\Setting
+
+# Default redirect location
+defaultRedirect: planetadeleste/swal/settings
+
+# Create page
+create:
+    title: Create Setting
+    redirect: planetadeleste/swal/settings/update/:id
+    redirectClose: planetadeleste/swal/settings
+
+# Update page
+update:
+    title: Edit Setting
+    redirect: planetadeleste/swal/settings
+    redirectClose: planetadeleste/swal/settings
+
+# Preview page
+preview:
+    title: Preview Setting

@@ -1,0 +1,77 @@
+<div class="nomoretables">
+	<table class="table table-hover align-middle table-row-dashed no-footer table-rounded table-striped g-5">
+		<thead>
+			<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+				<th class="text-center">ID</th>
+				<th class="text-center">User</th>
+				<th class="text-start">Wallet</th>
+				<th class="text-start">State</th>
+				<th class="text-start">Date</th>
+				<th class="text-start">From</th>
+				<th class="text-start">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in site.userslist %}
+				<tr class="bg-light-{% if item.validate == 1 %}success{% elseif item.validate == 2 %}warning{% else %}danger {% if item.is_activated == 0 %} text-muted{% endif %}{% endif %}">
+					<td data-title="ID" class="position-relative text-center">
+						{% if item.validate == 1 %}<div class="position-absolute start-0 top-0 w-10px h-100 bg-success"></div>
+						{% elseif item.validate == 2 %}<div class="position-absolute start-0 top-0 w-10px h-100 bg-warning"></div>
+						{% else %}<div class="position-absolute start-0 top-0 w-10px h-100 bg-danger"></div> 
+						{% endif %}
+						<span class="badge badge-secondary fw-light fs-1 px-3">{{ item.id }}</span>
+					</td>
+					<td data-title="User" class="text-start">
+						<a href="{{ 'admin/user'|page({id:item.id}) }}" class="fw-boldest fs-5 ms-2 {% if item.is_activated == 0 %}text-muted{% endif %}">{{ item.name }} {{ item.surname }}</a>
+						<br>
+						<span class="badge badge-light-danger"><i class="bi bi-envelope fs-6 me-2"></i> {{item.email}}</span>
+						{% if item.phone %}<br><span class="badge badge-light-success"><i class="bi bi-whatsapp fs-6 me-2"></i> {{item.phone}}</span>{% endif %}
+					</td>
+					<td data-title="Wallet" class="text-start">
+						<span class="badge badge-primary fw-bolder fs-1 px-3">{{ item.wallet }}</span>
+					</td>
+					<td data-title="State" class="text-start">
+						{% if item.validate == 1 %}<span class="badge badge-success">Validated</span>
+						{% elseif item.validate == 2 %}<span class="badge badge-warning">Pending validation</span>
+						{% else %}<span class="badge badge-danger">Not validated</span>{% endif %}
+						
+						{% if item.is_activated == 1 %}<span class="badge badge-success">Activated</span>
+						{% else %}<span class="badge badge-danger">Not activated</span>{% endif %}
+					</td>
+					<td data-title="Date" class="text-start">
+						<span class="badge badge-light mt-3">Last seen : {{ item.last_seen|localizeddate("medium", "medium","en") }}</span>
+						<br>
+						<span class="badge badge-light mt-3">Member since : {{ item.created_at|localizeddate("medium", "medium","en") }}</span>
+					</td>
+					<td data-title="From" class="text-start">{{ item.city }}, {{ item.country }}</td>
+					<td data-title="Action">
+						<a class="btn btn-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start">Actions
+							<span class="svg-icon svg-icon-5 m-0">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+								</svg>
+							</span>
+						</a>
+						<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+							<div class="menu-item px-3">
+								<a href="{{ 'admin/users'|page({id:item.id})}}" class="menu-link px-3"><i class="bi bi-person-video text-primary fs-4 me-2"></i> View user</a>
+							</div>
+							<div class="menu-item px-3">
+								{% if item.is_activated == 1 %}<a href data-request="site::onDisable" data-request-data="id:'{{item.id}}'" data-request-confirm="Do you really want to disable this user?" class="menu-link px-3"><i class="bi bi-lock-fill text-primary fs-4 me-2"></i> Disable</a>
+								{% else %}<a href data-request="site::onActivate" data-request-data="id:'{{item.id}}'" data-request-confirm="Do you really want to activate this user?" class="menu-link px-3"><i class="bi bi-unlock-fill text-primary fs-4 me-2"></i> Activate</a>{% endif %}
+							</div>
+						</div>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">
+						<div class="py-10 text-center">No entry</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+{% partial "widgets/paginator" data=site.userslist %}

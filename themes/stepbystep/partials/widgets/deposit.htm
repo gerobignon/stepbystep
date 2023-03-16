@@ -1,0 +1,73 @@
+<h2 class="fw-bolder text-white mb-5">Make deposit</h2>
+<div class="m-0">
+    {{ form_open({class:"row", id:"deposit_form"}) }}
+        <div class="col-12">
+            <h3 class="text-white fw-lighter my-5 fs-6">Deposit with :</h3>
+        </div>
+        <div class="col-6">
+            {% if user.groups[0].code == "admin" or site.state.fedapay == 1 %}<input type="radio" name="via" class="btn-check" value="fedapay"  id="kt_radio_buttons_2_option_1">{% endif %}
+            <label class="btn btn-dark p-3 d-flex align-items-center mb-5 {% if user.groups[0].code != "admin" and site.state.fedapay == 0 %}disable{% endif %}" for="kt_radio_buttons_2_option_1">
+                <img src="assets/img/fedapay.png" class="w-35px">
+                <span class="d-block fw-bold text-start">
+                    <span class="fw-bolder d-block fs-5 ms-3">Fedapay {% if site.state.fedapay == 0 %}<br><span class="mt-0 text-danger fw-bold fs-8"><i class="bi bi-power text-danger"></i>Disabled</span>{% endif %}</span>
+                </span>
+                
+            </label>
+        </div>
+        <div class="col-6">
+            {% if user.groups[0].code == "admin" or site.state.paydunya == 1 %}<input type="radio" class="btn-check" name="via" value="paydunya" id="kt_radio_buttons_2_option_2">{% endif %}
+            <label class="btn btn-dark p-3 d-flex align-items-center mb-5 {% if user.groups[0].code != "admin" and site.state.paydunya == 0 %}disable{% endif %}" for="kt_radio_buttons_2_option_2">
+                <img src="assets/img/paydunya.png" class="w-35px">
+                <span class="d-block fw-bold text-start">
+                    <span class="fw-bolder d-block fs-5 ms-3">Paydunya {% if site.state.paydunya == 0 %}<br><span class="mt-0 text-danger fw-bold fs-8"><i class="bi bi-power text-danger"></i>Disabled</span>{% endif %}</span>
+                </span>
+            </label>
+        </div>
+        <div class="col-6">
+            {% if user.groups[0].code == "admin" or site.state.cinetpay == 1 %}<input type="radio" class="btn-check" name="via" value="cinetpay" id="kt_radio_buttons_2_option_3">{% endif %}
+            <label class="btn btn-dark p-3 d-flex align-items-center mb-5 {% if user.groups[0].code != "admin" and site.state.cinetpay == 0 %}disable{% endif %}" for="kt_radio_buttons_2_option_3">
+                <img src="assets/img/cinetpay.png" class="w-35px">
+                <span class="d-block fw-bold text-start">
+                    <span class="fw-bolder d-block fs-5 ms-3">CinetPay {% if site.state.cinetpay == 0 %}<br><span class="mt-0 text-danger fw-bold fs-8"><i class="bi bi-power text-danger"></i>Disabled</span>{% endif %}</span>
+                </span>
+            </label>
+        </div>
+        <div class="col-6">
+            {% if user.groups[0].code == "admin" or site.state.payplus == 1 %}<input type="radio" class="btn-check" name="via" value="payplus" id="kt_radio_buttons_2_option_4">{% endif %}
+            <label class="btn btn-dark p-3 d-flex align-items-center mb-5 {% if user.groups[0].code != "admin" and site.state.payplus == 0 %}disable{% endif %}" for="kt_radio_buttons_2_option_4">
+                <img src="assets/img/payplus.png" class="w-35px">
+                <span class="d-block fw-bold text-start">
+                    <span class="fw-bolder d-block fs-5 ms-3">PayPlus {% if site.state.payplus == 0 %}<br><span class="mt-0 text-danger fw-bold fs-8"><i class="bi bi-power text-danger"></i>Disabled</span>{% endif %}</span>
+                </span>
+            </label>
+        </div>
+        <div class="col-6">
+            {% if user.groups[0].code == "admin" or site.state.kkiapay == 1 %}<input type="radio" class="btn-check" name="via" value="kkiapay" id="kt_radio_buttons_2_option_5">{% endif %}
+            <label class="btn btn-dark p-3 d-flex align-items-center mb-5 {% if user.groups[0].code != "admin" and site.state.kkiapay == 0 %}disable{% endif %}" for="kt_radio_buttons_2_option_5">
+                <img src="assets/img/kkiapay.png" class="w-35px">
+                <span class="d-block fw-bold text-start">
+                    <span class="fw-bolder d-block fs-5 ms-3">KkiaPay {% if site.state.kkiapay == 0 %}<br><span class="mt-0 text-danger fw-bold fs-8"><i class="bi bi-power text-danger"></i>Disabled</span>{% endif %}</span>
+                </span>
+            </label>
+        </div>
+        <div class="col-12 mt-10 mb-5">
+            <h3 class="text-white fw-lighter fs-6">Amount to deposit (XOF) :</h3>
+        </div>
+        <div class="col-12">
+            <input type="number" name="amount" step="5" class="form-control bg-dark text-white w-50" placeholder="1000">
+        </div>
+        <div class="col-12 mt-10">
+            <button type="submit" id="deposit_submit" class="btn btn-lg btn-info mb-5">
+                <span class="indicator-label">Continue</span>
+                <span class="indicator-progress">Please wait...
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+        </div>
+    {{ form_close() }}
+</div>
+
+{% if this.page.id != "dashboard" %}
+    {% put scripts %}
+        <script src="assets/js/custom/deposits.js"></script>
+    {% endput %}
+{% endif %}

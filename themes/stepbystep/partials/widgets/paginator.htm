@@ -1,0 +1,82 @@
+{% if data.hasPages %}
+    <ul class="pagination pagination-circle pagination-outline mt-10">
+        
+        <li class="page-item previous {% if data.currentPage <= 1 %}disabled{% endif %}">
+            <a href="{{ data.url(1) }}" class="page-link border-0">
+                <span class="svg-icon svg-icon-muted"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M14.6 4L6.6 12L14.6 20H10.6L3.3 12.7C2.9 12.3 2.9 11.7 3.3 11.3L10.6 4H14.6Z" fill="black"/>
+                    <path opacity="0.3" d="M21.6 4L13.6 12L21.6 20H17.6L10.3 12.7C9.9 12.3 9.9 11.7 10.3 11.3L17.6 4H21.6Z" fill="black"/>
+                </svg></span>
+            </a>
+        </li>
+        
+        <li class="page-item previous {% if data.currentPage <= 1 %}disabled{% endif %}">
+            <a href="{{ data.previousPageUrl }}" class="page-link border-0">
+                <span class="svg-icon svg-icon-muted"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M17.6 4L9.6 12L17.6 20H13.6L6.3 12.7C5.9 12.3 5.9 11.7 6.3 11.3L13.6 4H17.6Z" fill="black"/>
+                </svg></span>
+            </a>
+        </li>
+        
+        {% if (data.currentPage-3) >= 1 %}
+            <li class="page-item"><a href="{{ data.url(1) }}" class="page-link">1</a></li>
+        {% endif %}
+        
+        {% if (data.currentPage-4) >= 1 %}
+            <li class="page-item"><a href="{{ data.url(2) }}" class="page-link">2</a></li>
+        {% endif %}
+        
+        {% if (data.currentPage-5) >= 1 %}
+            <li class="page-item disabled"><a href class="page-link">...</a></li>
+        {% endif %}
+        
+        {# % for page in range(1, data.lastPage) %}<li class="page-item {% if data.currentPage == page %}active{% endif %}"><a href="{{ data.url(page) }}" class="page-link">{{ page }}</a></li>{% endfor % #}
+        
+        {% if (data.currentPage-2) > 0 %}
+            <li class="page-item"><a href="{{ data.url(data.currentPage-2) }}" class="page-link">{{ data.currentPage-2 }}</a></li>
+        {% endif %}
+        
+        {% if (data.currentPage-1) > 0 %}
+            <li class="page-item"><a href="{{ data.url(data.currentPage-1) }}" class="page-link">{{ data.currentPage-1 }}</a></li>
+        {% endif %}
+        
+        <li class="page-item active"><a href class="page-link">{{ data.currentPage }}</a></li>
+        
+        {% if (data.currentPage+1) <= data.lastPage %}
+            <li class="page-item"><a href="{{ data.url(data.currentPage+1) }}" class="page-link">{{ data.currentPage+1 }}</a></li>
+        {% endif %}
+        
+        {% if (data.currentPage+2) <= data.lastPage %}
+            <li class="page-item"><a href="{{ data.url(data.currentPage+2) }}" class="page-link">{{ data.currentPage+2 }}</a></li>
+        {% endif %}
+        
+        {% if (data.currentPage+5) <= data.lastPage %}
+            <li class="page-item disabled"><a href class="page-link">...</a></li>
+        {% endif %}
+        
+        {% if (data.currentPage+4) <= data.lastPage %}
+            <li class="page-item"><a href="{{ data.url(data.lastPage-1) }}" class="page-link">{{ data.lastPage-1 }}</a></li>
+        {% endif %}
+        
+        {% if (data.currentPage+3) <= data.lastPage %}
+            <li class="page-item"><a href="{{ data.url(data.lastPage) }}" class="page-link">{{ data.lastPage }}</a></li>
+        {% endif %}
+        
+        <li class="page-item next {% if not data.hasMorePages %}disabled{% endif %}">
+            <a href="{{ data.nextPageUrl }}" class="page-link border-0">
+                <span class="svg-icon svg-icon-muted"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 4L14 12L6 20H10L17.3 12.7C17.7 12.3 17.7 11.7 17.3 11.3L10 4H6Z" fill="black"/>
+                </svg></span>
+            </a>
+        </li>
+        
+        <li class="page-item next {% if data.currentPage == data.lastPage %}disabled{% endif %}">
+            <a href="{{ data.url(data.lastPage) }}" class="page-link border-0">
+                <span class="svg-icon svg-icon-muted"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M10 4L18 12L10 20H14L21.3 12.7C21.7 12.3 21.7 11.7 21.3 11.3L14 4H10Z" fill="black"/>
+                    <path opacity="0.3" d="M3 4L11 12L3 20H7L14.3 12.7C14.7 12.3 14.7 11.7 14.3 11.3L7 4H3Z" fill="black"/>
+                </svg></span>
+            </a>
+        </li>
+    </ul>
+{% endif %}

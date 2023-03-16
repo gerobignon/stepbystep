@@ -1,0 +1,10 @@
+name: Rate
+form: $/gero/site/models/rates/fields.yaml
+modelClass: Gero\Site\Models\Rates
+defaultRedirect: gero/site/rate
+create:
+    redirect: 'gero/site/rate/update/:id'
+    redirectClose: gero/site/rate
+update:
+    redirect: gero/site/rate
+    redirectClose: gero/site/rate

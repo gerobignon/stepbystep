@@ -1,0 +1,10 @@
+name: Crypto
+form: $/gero/purchases/models/cryptos/fields.yaml
+modelClass: Gero\Purchases\Models\Cryptos
+defaultRedirect: gero/purchases/crypto
+create:
+    redirect: 'gero/purchases/crypto/update/:id'
+    redirectClose: gero/purchases/crypto
+update:
+    redirect: gero/purchases/crypto
+    redirectClose: gero/purchases/crypto

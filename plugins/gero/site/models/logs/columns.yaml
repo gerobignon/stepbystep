@@ -1,0 +1,14 @@
+columns:
+    id:
+        label: id
+        type: number
+        sortable: true
+    msg:
+        label: msg
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: created_at
+        type: datetime
+        sortable: true

@@ -1,0 +1,119 @@
+<div class="card mb-5 mb-xl-8" style="background-image:url(assets/media/misc/bg-2.jpg); background-repeat:no-repeat; background-size:cover; background-position:center;">
+    <div class="card-body d-flex flex-column py-15">
+        <div class="text-white fw-bolder fs-2">
+        <h2 class="fw-bolder text-white mb-2">Buy crypto-currencies</div>
+        {{ form_open({class:"row", id:"buy_form"}) }}
+            <div class="col-12">
+                <h3 class="text-white fw-lighter my-5 fs-6">Buy :</h3>
+            </div>
+
+            <div class="col-7">
+                {% if site.state.usdt == 1 %}<input type="radio" class="btn-check" name="currency" id="currency" data-rate="{{ site.rates[0].buy}}" value="USDT.TRC20" checked="checked"  id="kt_radio_buttons_2_option_1">{% endif %}
+                <label class="btn btn-dark p-3 d-flex align-items-center mb-5 {% if site.state.usdt == 0 %}disable{% endif %}" for="kt_radio_buttons_2_option_1">
+                    <img src="assets/img/usdt.trc20.png" class="w-35px">
+                    <span class="d-block fw-bold text-start">
+                        <span class="fw-bolder d-block fs-5 ms-3">USDT.TRC20 <br>{% if site.state.usdt == 0 %}<span class="mt-0 text-danger fw-bold fs-8"><i class="bi bi-power text-danger"></i>Disabled{% else %}<span class="mt-0 text-muted fw-bold fs-8">$1 <i class="bi bi-arrow-right"></i> {{ site.rates[0].buy}} XOF{% endif %}</span></span>
+                    </span>
+                </label>
+            </div>
+            <div class="col-7">
+                <div class="btn btn-dark p-3 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_2">
+                    <img src="assets/img/busd.png" class="w-35px">
+                    <span class="d-block fw-bold text-start">
+                        <span class="fw-bolder d-block fs-5 ms-3 lh-1">BUSD.BEP20 <br><span class="mt-0 text-muted fw-bold fs-8"><i class="bi bi-lock-fill"></i>Coming soon</span></span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="btn btn-dark p-3 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_3">
+                    <img src="assets/img/tron.png" class="w-35px">
+                    <span class="d-block fw-bold text-start">
+                        <span class="fw-bolder d-block fs-5 ms-3 lh-1">TRON <br><span class="mt-0 text-muted fw-bold fs-8"><i class="bi bi-lock-fill"></i>Coming soon</span></span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="btn btn-dark p-3 d-flex align-items-center mb-5" for="kt_radio_buttons_2_option_4">
+                    <img src="assets/img/bitcoin.png" class="w-35px">
+                    <span class="d-block fw-bold text-start">
+                        <span class="fw-bolder d-block fs-5 ms-3 lh-1">BITCOIN <br><span class="mt-0 text-muted fw-bold fs-8"><i class="bi bi-lock-fill"></i>Coming soon</span></span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-12"></div>
+            <div class="col-4 mt-10">
+                <h3 class="text-white fw-lighter fs-6">I want :</h3>
+                <input type="number" name="want" id="want" step="1" class="form-control bg-dark text-white" placeholder="1">
+            </div>
+            <div class="col-4 mt-10">
+                <h3 class="text-white fw-lighter fs-6">I give (XOF) :</h3>
+                <input type="number" name="give" id="give" step="{{ site.rates[0].buy}}" class="form-control bg-dark text-white" placeholder="{{ site.rates[0].buy}}">
+            </div>
+            <div class="col-12"></div>
+            <div class="col-7 mt-10">
+                <h3 class="text-white fw-lighter fs-6">Address to send :</h3>
+                <select class="form-select form-select-solid bg-dark text-white" name="address" id="address" data-control="select2" data-placeholder="Select an address">
+                    <option></option>
+                    <option value="add">Add a wallet</option>
+                    {% for item in site.wallet %}
+                        <option value="{{item.wallet}}">{{ item.name }} ({{item.currency}}) : {{ item.wallet }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mt-10">
+                <button type="submit" id="buy_submit" class="btn btn-warning">
+                    <span class="indicator-label">Continue</span>
+                    <span class="indicator-progress">Please wait...
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% put scripts %}
+
+    <script src="assets/js/custom/wallet.js"></script>
+    <script src="assets/js/custom/buy.js"></script>
+
+    <script>
+        /*let bubuy = {{this.session.get("rates")|json_encode|raw}};
+        $.extend(bubuy, {"PM":1, "PAYEER":1, "USDT.TRC20":1, "BUSD.BEP20":1});
+        
+        $('#cryptobuy .give').on('input', function(){
+            let numb = parseInt($('#cryptobuy .give').val());
+            $('#cryptobuy .want').val((numb/$("#currencybuy").find(':selected').data( "rate" ))*bubuy[$("#currencybuy").find(':selected').val()]);
+        });
+        
+        $('#cryptobuy .want').on('input', function(){
+            let numb = parseInt($('#cryptobuy .want').val());
+            $('#cryptobuy .give').val(numb * (1/bubuy[$("#currencybuy").find(':selected').val()]) * $("#currencybuy").find(':selected').data( "rate" ));
+        });*/
+
+        let bubuy = {
+            "USDT.TRC20":{{ site.rates[0].buy }},
+            "TRON":400,
+            "BUSD":500,
+            "BTC":300
+        }
+
+        let currency = $("#currency:checked");
+
+        $('#give').on('input', function(){
+            let numb = parseInt($('#give').val());
+            $('#want').val(numb/bubuy[currency.val()]);
+        });
+        
+        $('#want').on('input', function(){
+            let numb = parseInt($('#want').val());
+            $('#give').val(numb * bubuy[currency.val()]);
+        });
+
+        $('#address').on('change', function(){
+            if($('#address').val()== "add"){
+                $('#addwallet').modal('show');
+            }
+        });
+        
+    </script>
+{% endput %}

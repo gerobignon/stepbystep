@@ -1,0 +1,196 @@
+<div id="kt_header" class="header align-items-stretch" data-kt-sticky="true" data-kt-sticky-name="header" data-kt-sticky-offset="{default: '200px', lg: '300px'}">
+    <div class="container-xxl d-flex align-items-center">
+        <div class="d-flex topbar align-items-center d-lg-none ms-n2 me-3" title="Show aside menu">
+            <div class="btn btn-icon btn-active-light-primary btn-custom w-30px h-30px w-md-40px h-md-40px" id="kt_header_menu_mobile_toggle">
+                <span class="svg-icon svg-icon-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="19" viewBox="0 0 16 19" fill="none">
+                        <path d="M12 0.400024H1C0.4 0.400024 0 0.800024 0 1.40002V2.40002C0 3.00002 0.4 3.40002 1 3.40002H12C12.6 3.40002 13 3.00002 13 2.40002V1.40002C13 0.800024 12.6 0.400024 12 0.400024Z" fill="currentColor"/>
+                        <path opacity="0.3" d="M15 8.40002H1C0.4 8.40002 0 8.00002 0 7.40002C0 6.80002 0.4 6.40002 1 6.40002H15C15.6 6.40002 16 6.80002 16 7.40002C16 8.00002 15.6 8.40002 15 8.40002ZM16 12.4C16 11.8 15.6 11.4 15 11.4H1C0.4 11.4 0 11.8 0 12.4C0 13 0.4 13.4 1 13.4H15C15.6 13.4 16 13 16 12.4ZM12 17.4C12 16.8 11.6 16.4 11 16.4H1C0.4 16.4 0 16.8 0 17.4C0 18 0.4 18.4 1 18.4H11C11.6 18.4 12 18 12 17.4Z" fill="currentColor"/>
+                    </svg>
+                </span>
+            </div>
+        </div>
+        
+        <div class="header-logo me-5 me-md-10 flex-grow-1 flex-lg-grow-0">
+            <a href="{{ 'home'|page(false) }}">
+                <img alt="Step by Step Exchange" src="assets/img/picto_blanc.png" class="logo-default h-50px">
+                <img alt="Step by Step Exchange" src="assets/img/logo.png" class="logo-sticky h-50px">
+            </a>
+        </div>
+        
+        <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+            <div class="d-flex align-items-stretch" id="kt_header_nav">
+                
+                <div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
+                    <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
+                        
+                        <div class="menu-item {% if this.page.id == 'dashboard' %}show{% endif %} me-lg-1">
+                            <a href="{{ 'dashboard'|page(false) }}" class="menu-link py-3">
+                                <span class="menu-icon"><i class="bi bi-house-fill fs-3"></i></span>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </div>
+
+                        <div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item  {% if this.page.id == 'deposits' %}show{% endif %} menu-lg-down-accordion me-lg-1">
+                            <span class="menu-link py-3">
+                                <span class="menu-icon">{% if user.validate != 1 %} <i class="bi bi-lock-fill fs-3"></i>{% else %}<i class="bi bi-credit-card-fill fs-3"></i>{% endif %}</span>
+                                <span class="menu-title">Deposits</span>
+                                <span class="menu-arrow"></span>
+                            </span>
+                            <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+                                <div class="menu-item me-lg-1">
+                                    <a {% if user.validate == 1 %} href{% if this.page.id == "dashboard" %}="{{"dashboard"|page}}#depositscard" {% else %} data-bs-toggle="modal" data-bs-target="#makedeposit"{% endif %}{% endif %} class="menu-link py-3">
+                                        <span class="menu-icon">{% if user.validate != 1 %} <i class="bi bi-lock-fill fs-3"></i>{% else %}<i class="bi bi-credit-card-fill fs-3"></i>{% endif %}</span>
+                                        <span class="menu-title">Make Deposit</span>
+                                    </a>
+                                </div>
+                                <div class="menu-item {% if this.page.id == 'deposits' %}show{% endif %} me-lg-1">
+                                    <a {% if user.validate == 1 %} href="{{ 'deposits'|page(false) }}"{% endif %} class="menu-link py-3">
+                                        <span class="menu-icon">{% if user.validate != 1 %} <i class="bi bi-lock-fill fs-3"></i>{% else %}<i class="bi bi-clock-history fs-3"></i>{% endif %}</span>
+                                        <span class="menu-title">History</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="menu-item  {% if this.page.id == 'buy' %}show{% endif %} me-lg-1">
+                            <a {% if user.validate == 1 %} href="{{'buy'|page}}" {% endif %} class="menu-link py-3">
+                                <span class="menu-icon">{% if user.validate != 1 %} <i class="bi bi-lock-fill fs-3"></i>{% else %}<i class="bi bi-coin fs-3"></i>{% endif %}</span>
+                                <span class="menu-title">Crypto-currency</span>
+                            </a>
+                        </div>
+                        
+                        <div class="menu-item {% if this.page.id == 'about' %}show{% endif %} me-lg-1">
+                            <a href="{{ 'about'|page(false) }}" class="menu-link py-3">
+                                <span class="menu-icon"><i class="bi bi-info-circle-fill fs-3"></i></span>
+                                <span class="menu-title">About Step by step</span>
+                            </a>
+                        </div>
+                        
+                        <div class="menu-item {% if this.page.id == 'contact' %}show{% endif %} me-lg-1">
+                            <a href="{{ 'contact'|page(false) }}" class="menu-link py-3">
+                                <span class="menu-icon"><i class="bi bi-envelope-fill fs-3"></i></span>
+                                <span class="menu-title">Contact us</span>
+                            </a>
+                        </div>
+                        
+                        {% if (user.groups[0].code == "admin") %}
+                            <div data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1">
+                                <span class="menu-link py-3">
+                                    <span class="menu-icon"><i class="bi bi-grid-fill fs-3"></i></span>
+                                    <span class="menu-title">Administration</span>
+                                    <span class="menu-arrow"></span>
+                                </span>
+                                <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+                                    <div class="menu-item {% if this.page.id == 'admin-validation' %}show{% endif %} menu-lg-down-accordion">
+                                        <a href="{{ 'admin/validation'|page(false) }}" class="menu-link py-3">
+                                            <span class="menu-icon"><i class="bi bi-person-bounding-box fs-3"></i></span>
+                                            <span class="menu-title">KYC Validations</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item {% if this.page.id == 'admin-users' %}show{% endif %} menu-lg-down-accordion">
+                                        <a href="{{ 'admin/users'|page(false) }}" class="menu-link py-3">
+                                            <span class="menu-icon"><i class="bi bi-people-fill fs-3"></i></span>
+                                            <span class="menu-title">Users management</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item {% if this.page.id == 'admin-deposits' %}show{% endif %} menu-lg-down-accordion">
+                                        <a href="{{ 'admin/deposits'|page(false) }}" class="menu-link py-3">
+                                            <span class="menu-icon"><i class="bi bi-credit-card-fill fs-3"></i></span>
+                                            <span class="menu-title">Deposits</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item {% if this.page.id == 'admin-buys' %}show{% endif %} menu-lg-down-accordion">
+                                        <a href="{{ 'admin/buys'|page(false) }}" class="menu-link py-3">
+                                            <span class="menu-icon"><i class="bi bi-currency-bitcoin fs-3"></i></span>
+                                            <span class="menu-title">Purchases</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item {% if this.page.id == 'admin-options' %}show{% endif %} menu-lg-down-accordion">
+                                        <a href="{{ 'admin/options'|page(false) }}" class="menu-link py-3">
+                                            <span class="menu-icon"><i class="bi bi-sliders fs-3"></i></span>
+                                            <span class="menu-title">Options</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                        <div class="menu-item pt-6">
+        
+                            <a href="#" onclick="doGTranslate('en|en');return false;" title="English" class="gflag nturl me-3" style="background-position:-0px -0px;">
+                                <img src="//gtranslate.net/flags/blank.png" height="32" width="32" alt="English">
+                            </a>
+                            <a href="#" onclick="doGTranslate('en|fr');return false;" title="French" class="gflag nturl" style="background-position:-200px -100px;">
+                                <img src="//gtranslate.net/flags/blank.png" height="32" width="32" alt="French">
+                            </a>
+
+                            <style type="text/css">
+                                <!--
+                                a.gflag {vertical-align:middle;font-size:32px;padding:1px 0;background-repeat:no-repeat;background-image:url(//gtranslate.net/flags/32.png);}
+                                a.gflag img {border:0;}
+                                a.gflag:hover {background-image:url(//gtranslate.net/flags/32a.png);}
+                                #goog-gt-tt {display:none !important;}
+                                .goog-te-banner-frame {display:none !important;}
+                                .goog-te-menu-value:hover {text-decoration:none !important;}
+                                body {top:0 !important;}
+                                #google_translate_element2 {display:none!important;}
+                                -->
+                            </style>
+
+                            <div id="google_translate_element2"></div>
+                            <script type="text/javascript">
+                            function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'en',autoDisplay: false}, 'google_translate_element2');}
+                            </script><script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+                            <script type="text/javascript">
+                            /* <![CDATA[ */
+                            eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('6 7(a,b){n{4(2.9){3 c=2.9("o");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s(\'t\'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a==\'\')v;3 b=a.w(\'|\')[1];3 c;3 d=2.x(\'y\');z(3 i=0;i<d.5;i++)4(d[i].A==\'B-C-D\')c=d[i];4(2.j(\'k\')==E||2.j(\'k\').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,\'m\');7(c,\'m\')}}',43,43,'||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500'.split('|'),0,{}))
+                            /* ]]> */
+                            </script>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="topbar d-flex align-items-stretch flex-shrink-0">
+                <div class="d-flex align-items-center me-n3 ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
+                    
+                    <div class="btn btn-icon bg-dark bg-opacity-25 btn-active-dark btn-custom w-30px h-30px w-md-40px h-md-40px" data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                        <img class="h-30px w-30px rounded" src="assets/img/user.svg" alt="">
+                    </div>
+                    
+                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
+
+                        <div class="menu-item px-3">
+                            <div class="menu-content px-3 text-center">
+                                <div class="fw-bolder fs-5 text-center">{{ user.name }} {{ user.surname }}</div>
+                                <div class="mb-3 text-center">
+                                    {% if user.validate == 1 %}
+                                        <span class="badge badge-success fw-bolder fs-8 px-2 py-1">Validated</span>
+                                    {% else %}
+                                        <span class="badge badge-danger fw-bolder fs-8 px-2 py-1">Not validated</span>
+                                    {% endif %}
+                                </div>
+                                <a href="#" class="fw-bold text-muted text-hover-primary fs-7 text-center">{{ user.email }}</a>
+                            </div>
+                        </div>
+                        
+                        <div class="separator my-2"></div>
+                        
+                        <div class="menu-item px-5 my-1">
+                            <a href="{{ 'account'|page(false) }}" class="menu-link px-5"><i class="bi bi-gear-fill fs-3 me-3"></i> Account Settings</a>
+                        </div>
+                        
+                        <div class="menu-item px-5">
+                            <a href data-request="onLogout" data-request-data="redirect: '/'" class="menu-link px-5"><i class="bi bi-power fs-3 me-3"></i> Sign Out</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

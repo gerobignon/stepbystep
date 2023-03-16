@@ -1,0 +1,199 @@
+title = "Users management"
+layout = "default"
+url = "/admin/user/:id?"
+
+[session]
+security = "user"
+redirect = "login"
+
+==
+
+    <div class="row mb-5 mb-lg-10 g-5 g-lg-8">
+        <div class="col-md-3">
+            <div class="card mb-5 mb-lg-8">
+                <div class="card-body">
+                    <div class="d-flex flex-center flex-column py-5">
+                        <div class="symbol symbol-100px symbol-circle bg-primary mb-7 text-center">
+                            <img src="assets/img/user.svg" class="img-fluid">
+                        </div>
+
+                        <a class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-3">{{ site.userOne.name }} {{ site.userOne.surname }}</a>
+
+                        <div class="mb-9 text-center">
+                            {% if site.userOne.validate == 1 %}<span class="badge badge-success">Validated</span>
+                            {% elseif site.userOne.validate == 2 %}<span class="badge badge-warning">Pending validation</span>
+                            {% else %}<span class="badge badge-danger">Not validated</span>{% endif %}
+                            <br>
+                            {% if site.userOne.is_activated == 1 %}
+                                <span class="badge badge-success fw-bolder fs-8 px-2 py-1">Active</span>
+                            {% else %}
+                                <span class="badge badge-danger fw-bolder fs-8 px-2 py-1">Not Active</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="fw-bolder mb-3">Transactions</div>
+
+                        <div class="d-flex flex-wrap flex-center">
+                            <div class="border border-info border-dashed rounded py-3 px-3 mb-3">
+                                <div class="fw-bolder text-info">
+                                    <span class="w-75px">Deposits</span>
+                                    <span class="svg-icon svg-icon-3 svg-icon-info">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="11" y="18" width="13" height="2" rx="1" transform="rotate(-90 11 18)" fill="currentColor" />
+                                            <path d="M11.4343 15.4343L7.25 11.25C6.83579 10.8358 6.16421 10.8358 5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75L11.2929 18.2929C11.6834 18.6834 12.3166 18.6834 12.7071 18.2929L18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25C17.8358 10.8358 17.1642 10.8358 16.75 11.25L12.5657 15.4343C12.2533 15.7467 11.7467 15.7467 11.4343 15.4343Z" fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="fs-5 fw-boldest text-dark">{{ deposit.totalOne }} <span class="fs-8">XOF</span></div>
+                            </div>
+                                
+                            <div class="border border-warning border-dashed rounded py-3 px-3 mx-4 mb-3">
+                                <div class="fw-bolder text-warning">
+                                    <span class="w-50px">Purchases</span>
+                                    <span class="svg-icon svg-icon-3 svg-icon-warning">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
+                                            <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="fs-5 fw-boldest text-dark">{{ crypto.totalOne }} <span class="fs-8">XOF</span></div>
+                            </div>
+                                
+                            <div class="bg-success rounded py-3 px-3 mx-4 mb-3">
+                                <div class="text-white">
+                                    <span class="w-50px">User wallet : </span>
+                                    <span class="fw-boldest">{{ deposit.totalOne - crypto.totalOne }} <span class="fs-8">XOF</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex flex-stack fs-4 py-3">
+                        <div class="fw-bolder rotate">Details</div>
+                    </div>
+                    <div class="separator"></div>
+                    <div>
+                        <div class="pb-5 fs-6">
+                            <div class="fw-bolder mt-5">Account ID</div>
+                            <div class="text-gray-600">ID-{{site.userOne.id}}</div>
+                            
+                            <div class="fw-bolder mt-5">Email</div>
+                            <div class="text-gray-600">
+                                <a href class="text-gray-600 text-hover-primary">{{site.userOne.email}}</a>
+                            </div>
+
+                            {% if site.userOne.phone %}
+                                <div class="fw-bolder mt-5">Phone</div>
+                                <div class="text-gray-600">
+                                    <a href class="text-gray-600 text-hover-primary">{{site.userOne.phone}}</a>
+                                </div>
+                            {% endif %}
+                            
+                            {% if site.userOne.address %}
+                                <div class="fw-bolder mt-5">Address</div>
+                                <div class="text-gray-600">{{site.userOne.address}}
+                                <br>{{site.userOne.city}}
+                                <br>{{site.userOne.country}}</div>
+                            {% endif %}
+
+                            {% if site.userOne.type %}
+                                <div class="fw-bolder mt-5">{{site.userOne.type}}</div>
+                                <div class="text-gray-600">Number : {{site.userOne.idnumber}}</div>
+                                <div class="text-gray-600">Exp : {{site.userOne.idexp}}</div>
+                            {% endif %}
+                            
+                            <div class="fw-bolder mt-5">Last Login</div>
+                            <div class="text-gray-600">{{site.userOne.last_login|localizeddate("medium", "medium","en")}}</div>
+                            
+                            <div class="fw-bolder mt-5">Last seen</div>
+                            <div class="text-gray-600">{{site.userOne.last_seen|localizeddate("medium", "medium","en")}}</div>
+                            
+                            <div class="fw-bolder mt-5">Member since</div>
+                            <div class="text-gray-600">{{site.userOne.created_at|localizeddate("medium", "medium","en")}}</div>
+
+                            <div class="fw-bolder mt-5">User ID files :</div>
+                            {% if site.userOne.validate == 1 %}
+                                <div class="d-flex justify-content-around">
+                                    <a class="d-block overlay h-50px w-50px mx-auto" data-fslightbox href="{{ validator.one.selfie|resize(null, 720) }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View Selfie">
+                                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-50px w-50px"
+                                            style="background-image:url('{{ validator.one.selfie|resize(50, 50, { mode: 'crop' }) }}'); background-position:center;">
+                                        </div>
+                                        <div class="overlay-layer card-rounded bg-dark bg-opacity-25 shadow">
+                                            <i class="bi bi-eye-fill text-white fs-3x"></i>
+                                        </div>
+                                    </a>
+                                    <a class="d-block overlay h-50px w-50px mx-auto" data-fslightbox href="{{ validator.one.idcard|resize(null, 720) }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View ID document">
+                                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-50px w-50px"
+                                            style="background-image:url('{{ validator.one.idcard|resize(50, 50, { mode: 'crop' }) }}'); background-position:center;">
+                                        </div>
+                                        <div class="overlay-layer card-rounded bg-dark bg-opacity-25 shadow">
+                                            <i class="bi bi-eye-fill text-white fs-3x"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-8">
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#deposits">
+                        <span class="text-black d-md-none">Deposits</span>
+                        <span class="d-none d-md-inline">Deposits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#purchases">
+                        <span class="text-black d-md-none">Purchases</span>
+                        <span class="d-none d-md-inline">Purchases</span>
+                    </a>
+                </li>
+                <li class="nav-item ms-auto">
+                    {% if site.userOne.is_activated == 1 %}<a href data-request="site::onDisable" data-request-data="id:'{{item.id}}'" data-request-confirm="Do you really want to disable this user?" class="btn btn-danger"><i class="bi bi-lock-fill text-white fs-4 me-2"></i> Disable</a>
+                    {% else %}<a href data-request="site::onActivate" data-request-data="id:'{{item.id}}'" data-request-confirm="Do you really want to activate this user?" class="btn btn-success"><i class="bi bi-unlock-fill text-white fs-4 me-2"></i> Activate</a>{% endif %}
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="deposits" role="tabpanel">
+                    <div class="card card-flush mb-6 mb-lg-9">
+                        <div class="card-header mt-6">
+                            <div class="card-title flex-column">
+                                <h2 class="mb-1">User's deposits</h2>
+                            </div>
+                            
+                            <div class="card-toolbar">
+                                <span class="bg-info py-2 px-4 rounded-3 text-white fs-3">Total : <span class="fw-boldest">{{ deposit.totalOne }} <span class="fs-8 fw-normal">XOF</span></span></span>
+                            </div>
+                        </div>
+                        <div class="card-body p-9 pt-4">
+                            {% partial 'lists/deposit' source=deposit.listOne %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="purchases" role="tabpanel">
+                    <div class="card card-flush mb-6 mb-lg-9">
+                        <div class="card-header mt-6">
+                            <div class="card-title flex-column">
+                                <h2 class="mb-1">User's purchases</h2>
+                            </div>
+                            
+                            <div class="card-toolbar">
+                                <span class="bg-warning py-2 px-4 rounded-3 text-dark fs-3">Total : <span class="fw-boldest">{{ crypto.totalOne }} <span class="fs-8 fw-normal">XOF</span></span></span>
+                            </div>
+                        </div>
+                        <div class="card-body p-9 pt-4">
+                            {% partial 'lists/buy' source=crypto.listOne %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

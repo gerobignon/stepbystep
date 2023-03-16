@@ -1,0 +1,54 @@
+fields:
+    id:
+        label: Id
+        span: auto
+        disabled: 1
+        readOnly: 1
+        type: number
+    user:
+        label: User
+        nameFrom: name
+        descriptionFrom: email
+        select: id
+        span: auto
+        type: relation
+    amount:
+        label: Amount
+        span: auto
+        type: number
+    ref:
+        label: Reference
+        span: auto
+        type: text
+    via:
+        label: 'Payment Processor'
+        span: auto
+        type: text
+    status:
+        label: Status
+        options:
+            success: success
+            waiting: waiting
+            creating: creating
+            failed: failed
+        showSearch: true
+        span: auto
+        type: dropdown
+    created_at:
+        label: 'Created at'
+        mode: datetime
+        span: auto
+        disabled: 1
+        readOnly: 1
+        type: datepicker
+    updated_at:
+        label: 'Updated at'
+        mode: datetime
+        span: auto
+        disabled: 1
+        required: 1
+        type: datepicker
+    real:
+        label: Real
+        span: auto
+        type: text

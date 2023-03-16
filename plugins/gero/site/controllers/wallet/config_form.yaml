@@ -1,0 +1,10 @@
+name: Wallet
+form: $/gero/site/models/wallets/fields.yaml
+modelClass: Gero\Site\Models\Wallets
+defaultRedirect: gero/site/wallet
+create:
+    redirect: 'gero/site/wallet/update/:id'
+    redirectClose: gero/site/wallet
+update:
+    redirect: gero/site/wallet
+    redirectClose: gero/site/wallet

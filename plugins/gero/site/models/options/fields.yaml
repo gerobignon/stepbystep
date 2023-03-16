@@ -1,0 +1,47 @@
+fields:
+    fedapay:
+        label: Fedapay
+        'on': 'ON'
+        'off': 'OFF'
+        span: auto
+        default: 1
+        type: switch
+    paydunya:
+        label: Paydunya
+        'on': 'ON'
+        'off': 'OFF'
+        span: auto
+        default: 1
+        type: switch
+    cinetpay:
+        label: Cinetpay
+        'on': 'ON'
+        'off': 'OFF'
+        span: auto
+        default: 1
+        type: switch
+    kkiapay:
+        label: Kkiapay
+        'on': 'ON'
+        'off': 'OFF'
+        span: auto
+        default: 1
+        type: switch
+    usdt:
+        label: Usdt
+        'on': 'ON'
+        'off': 'OFF'
+        span: auto
+        default: 1
+        type: switch
+    payplus:
+        label: Payplus
+        'on': 'ON'
+        'off': 'OFF'
+        span: auto
+        default: 1
+        type: switch
+    text:
+        label: Text
+        span: full
+        type: text

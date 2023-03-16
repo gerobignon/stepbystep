@@ -1,0 +1,4 @@
+title: Option
+modelClass: Gero\Site\Models\Options
+toolbar:
+    buttons: reorder_toolbar

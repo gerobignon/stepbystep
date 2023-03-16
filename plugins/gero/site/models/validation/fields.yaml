@@ -1,0 +1,33 @@
+fields:
+    user:
+        label: User
+        nameFrom: email
+        descriptionFrom: description
+        select: id
+        span: auto
+        type: relation
+    created_at:
+        label: 'Created at'
+        mode: datetime
+        span: auto
+        disabled: 1
+        readOnly: 1
+        type: datepicker
+    idcard:
+        label: 'ID file'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    selfie:
+        label: 'Selfie with ID'
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload

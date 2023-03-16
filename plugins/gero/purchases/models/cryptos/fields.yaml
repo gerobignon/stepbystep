@@ -1,0 +1,35 @@
+fields:
+    id:
+        label: Id
+        span: auto
+        type: number
+    user:
+        label: User
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation
+    amount:
+        label: Amount
+        span: auto
+        type: number
+    ref:
+        label: Ref
+        span: auto
+        type: text
+    address:
+        label: Address
+        span: auto
+        type: text
+    currency:
+        label: Currency
+        span: auto
+        type: text
+    status:
+        label: Status
+        span: auto
+        type: text
+    hash:
+        label: Hash
+        span: auto
+        type: text

@@ -1,0 +1,79 @@
+<div class="nomoretables">
+	<table class="table table-hover table-rounded table-striped border gy-7 gs-7">
+		<thead>
+			<tr class="fw-bold fs-6 text-start text-gray-800 border-bottom-2 border-gray-200">
+				<th>Selfie</th>
+				<th>ID doc.</th>
+				<th>User</th>
+				<th>Type of ID</th>
+				<th>Reference</th>
+				<th>Date</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in validator.list %}
+				<tr class="text-start">
+					<td data-title="Selfie">
+						<a class="d-block overlay h-50px w-50px mx-auto" data-fslightbox="{{item.id}}" href="{{ item.selfie|resize(null, 720) }}">
+							<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-50px w-50px"
+								style="background-image:url('{{ item.selfie|resize(50, 50, { mode: 'crop' }) }}'); background-position:center;">
+							</div>
+							<div class="overlay-layer card-rounded bg-dark bg-opacity-25 shadow">
+								<i class="bi bi-eye-fill text-white fs-3x"></i>
+							</div>
+						</a>
+					</td>
+					<td data-title="ID doc.">
+						<a class="d-block overlay h-50px w-50px mx-auto" data-fslightbox="{{item.id}}" href="{{ item.idcard|resize(null, 720) }}">
+							<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-50px w-50px"
+								style="background-image:url('{{ item.idcard|resize(50, 50, { mode: 'crop' }) }}'); background-position:center;">
+							</div>
+							<div class="overlay-layer card-rounded bg-dark bg-opacity-25 shadow">
+								<i class="bi bi-eye-fill text-white fs-3x"></i>
+							</div>
+						</a>
+					</td>
+					<td data-title="User"><a href="{{'admin/users'|page({id:item.user.id})}}">
+						<span class="fw-boldest fs-5 ms-2">{{ item.user.name }} {{ item.user.surname }}</span>
+						<br> <span class="badge badge-light">Email: {{ item.user.email }}</span>
+						<br> <span class="badge badge-light">Phone: {{ item.user.phone }}</span>
+						<br> <span class="badge badge-light">Address {{ item.user.address }}</span>
+					</td>
+					<td data-title="Type of ID">{{ item.user.type }}<br>ID number: {{item.user.idnumber}}<br>ID Expiration: {{item.user.idexp}}</td>
+					<td data-title="Status">
+						{% if item.user.validate == 1 %}<span class="badge badge-success">Validated</span>
+						{% elseif item.user.validate == 2 %}<span class="badge badge-warning">Pending</span>
+						{% else %}<span class="badge badge-danger">Not validated</span>
+						{% endif %}
+					</td>
+					<td data-title="Date"><span class="badge badge-light-success">{{ item.created_at|localizeddate("medium", "medium","en") }}</span></td>
+					<td data-title="Action">
+						<a class="btn btn-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start">Actions
+							<span class="svg-icon svg-icon-5 m-0">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+								</svg>
+							</span>
+						</a>
+						<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+							<div class="menu-item px-3">
+								<a href data-request="validator::onValid" data-request-data="id:'{{item.user.id}}'" data-request-confirm="Will you validate this account?" class="menu-link px-3"><i class="bi bi-check-square-fill text-success fs-4 me-2"></i> Validate</a>
+							</div>
+							<div class="menu-item px-3">
+								<a href data-request="validator::onReject" data-request-data="id:'{{item.user.id}}'" data-request-confirm="Are you sure you want to reject this account?" class="menu-link px-3"><i class="bi bi-x-square-fill text-danger fs-4 me-2"></i> Reject</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">
+						<div class="py-10 text-center">No entry</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% partial "widgets/paginator" data=validator.list %}

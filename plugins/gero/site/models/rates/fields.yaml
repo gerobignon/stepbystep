@@ -1,0 +1,9 @@
+fields:
+    currency:
+        label: Currency
+        span: auto
+        type: text
+    buy:
+        label: Rate
+        span: auto
+        type: number

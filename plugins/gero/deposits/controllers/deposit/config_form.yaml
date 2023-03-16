@@ -1,0 +1,10 @@
+name: Deposit
+form: $/gero/deposits/models/deposits/fields.yaml
+modelClass: Gero\Deposits\Models\Deposits
+defaultRedirect: gero/deposits/deposit
+create:
+    redirect: 'gero/deposits/deposit/update/:id'
+    redirectClose: gero/deposits/deposit
+update:
+    redirect: gero/deposits/deposit
+    redirectClose: gero/deposits/deposit

@@ -1,0 +1,4 @@
+title: Rate
+modelClass: Gero\Site\Models\Rates
+toolbar:
+    buttons: reorder_toolbar

@@ -1,0 +1,10 @@
+name: Log
+form: $/gero/site/models/logs/fields.yaml
+modelClass: Gero\Site\Models\Logs
+defaultRedirect: gero/site/log
+create:
+    redirect: 'gero/site/log/update/:id'
+    redirectClose: gero/site/log
+update:
+    redirect: gero/site/log
+    redirectClose: gero/site/log

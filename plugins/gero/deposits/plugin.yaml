@@ -1,0 +1,11 @@
+plugin:
+    name: Deposit
+    description: 'gero.deposits::lang.plugin.description'
+    author: Gero
+    icon: oc-icon-arrow-circle-down
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Deposits
+        url: gero/deposits/deposit
+        icon: icon-arrow-circle-down

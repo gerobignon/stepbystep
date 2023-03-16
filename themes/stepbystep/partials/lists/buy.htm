@@ -1,0 +1,80 @@
+<div class="nomoretables">
+    <table class="table table-hover align-middle table-row-dashed no-footer table-rounded table-striped g-5">
+        <thead>
+            <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                <th class="text-center">ID</th>
+                {% if this.page.id == "admin-buys" %}<th class="text-center">Users</th>{% endif %}
+                <th class="text-center">Currency</th>
+                <th class="text-start">Amount</th>
+                <th class="text-start">Statut</th>
+                <th class="text-start">Reference</th>
+                {#<th class="text-start">Action</th>#}
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in source %}
+                <tr class="bg-light-{% if item.status == 'success' %}success{% elseif item.status == 'pending' %}warning{% elseif item.status == 'creating' %}primary{% else %}danger{% endif %}">
+                    <td data-title="ID" class="position-relative text-center">
+                        {% if item.status == "success" %}<div class="position-absolute start-0 top-0 w-10px h-100 bg-success"></div>
+                        {% elseif item.status == "waiting" %}<div class="position-absolute start-0 top-0 w-10px h-100 bg-warning"></div>
+                        {% elseif item.status == "creating" %}<div class="position-absolute start-0 top-0 w-10px h-100 bg-primary"></div>
+                        {% else %}<div class="position-absolute start-0 top-0 w-10px h-100 bg-danger"></div>
+                        {% endif %}
+                        <span class="badge badge-secondary fw-light fs-1 px-3">{{ item.id }}</span>
+                    </td>
+                    {% if this.page.id == "admin-buys" %}
+                        <td data-title="User" class="text-start">
+                            <a href="{{ 'admin/user'|page({id:item.user.id})}}" class="fw-boldest fs-5">
+                                <span class="badge badge-dark text-white me-2 fs-6">#{{ item.user.id}}</span> {{ item.user.name }} {{ item.user.surname }}
+                                <br>
+                                <span class="badge badge-light text-gray mr-2 fs-8">{{ item.user.email}}</span>
+                            </a>
+                        </td>
+                    {% endif %}
+                    <td data-title="With" class="text-center">
+                        
+                        <div class="symbol symbol-50px symbol-circle mx-auto" data-bs-toggle="tooltip" data-bs-placement="right" title="{{item.via|uppercase}}">
+                            <div class="symbol-label" style="background-image:url(assets/img/{{item.currency|lower}}.png)"></div>
+                        </div>
+                    </td>
+                    <td data-title="Amount" class="text-start">
+                        <span class="badge badge-warning fw-light text-dark fs-4"><strong class="fw-boldest me-1">{{item.amount}}</strong> XOF</span>
+                    </td>
+                    <td data-title="Status" class="text-start">
+                        {% if item.status == "success" %}<span class="badge badge-success">Success</span>
+                        {% elseif item.status == "waiting" %}<span class="badge badge-warning">Pending</span>
+                        {% elseif item.status == "creating" %}<span class="badge badge-primary">Creating</span>
+                        {% else %}<span class="badge badge-danger">Failed</span>
+                        {% endif %}
+                    </td>
+                    <td data-title="Reference" class="text-start">
+                        {% if item.address %}<span class="badge badge-light-success">Address: {{ item.address }}</span><br>{% endif %}
+                        {% if item.hash %}<span class="badge badge-light-success fs-8">Hash: {{ item.hash }}</span><br>{% endif %}
+                        <span class="badge badge-light mt-3">{{ item.created_at|localizeddate("medium", "medium","en") }}</span>
+                    </td>
+                    {#<td data-title="Action">
+                        <a class="btn btn-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start">Actions
+                            <span class="svg-icon svg-icon-5 m-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                        </a>
+                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                            <div class="menu-item px-3">
+                                <a href data-request="validator::onClaim" data-request-data="id:'{{item.user.id}}'" data-request-confirm="Will you validate this account?" class="menu-link px-3"><i class="bi bi-check-square-fill text-success fs-4 me-2"></i> Validate</a>
+                            </div>
+                        </div>
+                    </td>#}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">
+                        <div class="py-10 text-center">No entry</div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% partial "widgets/paginator" data=source %}

@@ -1,0 +1,19 @@
+fields:
+    user:
+        label: User
+        nameFrom: email
+        descriptionFrom: description
+        span: auto
+        type: relation
+    name:
+        label: Name
+        span: auto
+        type: text
+    currency:
+        label: Currency
+        span: auto
+        type: text
+    wallet:
+        label: Wallet
+        span: auto
+        type: text

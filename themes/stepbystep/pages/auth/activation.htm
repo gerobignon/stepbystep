@@ -1,0 +1,34 @@
+title = "Activate your account"
+layout = "other"
+url = "/activation/:code?"
+
+[account]
+redirect = "dashboard"
+paramCode = "code"
+activationPage = "auth/activation"
+requirePassword = 1
+forceSecure = 0
+
+==
+
+{% if not user.is_activated %}
+    <div class="pt-lg-10 mb-10 text-center">
+        <h1 class="fw-bolder fs-2qx text-gray-800 mb-7">Verify Your Email</h1>
+
+        <div class="fs-3 fw-bold text-muted mb-10">We have sent an email to
+        <a class="link-primary fw-bolder">{{ user.email }}</a>
+        <br class="mt-5">Please check your mailbox<br> to verify your email.</div>
+        
+        <div class="text-center mb-10">
+            <p class="fs-5 fw-bold text-gray-700">Did’t receive an email?</p>
+
+            <a href="javascript:;" data-request="onSendActivationEmail" class="mt-5 btn btn-lg btn-primary fw-bolder">Resend</a>
+            <br>
+            <a href="javascript:;" data-request="onLogout" data-request-data="redirect: '/'" class="mt-5 btn btn-sm btn-light fw-bolder">Log out</a>
+        </div>
+    </div>
+{% else %}
+
+    {% do redirect('dashboard') %}
+
+{% endif %}

@@ -1,0 +1,4 @@
+title: Crypto
+modelClass: Gero\Purchases\Models\Cryptos
+toolbar:
+    buttons: reorder_toolbar
